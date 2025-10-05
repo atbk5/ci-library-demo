@@ -1,17 +1,7 @@
-def call() {
-    stage('Compile') {
-        echo "--> Starting Maven Compilation"
-        sh "mvn clean compile"
-    }
+def call(String MAVEN_TOOL_NAME) {
 
-    stage('Test') {
-        echo "--> Running Unit Tests"
-        sh "mvn test"
-    }
+    def utils = new com.demo.MavenUtils(this)
 
-    stage('Package') {
-        echo "--> Creating final application package"
-        sh "mvn package"
-    }
+    utils.runStandardBuild(MAVEN_TOOL_NAME) 
+
 }
-
